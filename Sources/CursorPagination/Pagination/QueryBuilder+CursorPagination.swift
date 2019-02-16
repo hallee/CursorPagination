@@ -42,8 +42,8 @@ extension QueryBuilder where Result: CursorPaginatable, Result.Database == Datab
 						 limit: Int? = nil,
 						 sorts: [CursorSort<Result>] = []) throws -> Future<CursorPage<Result>> {
 		var sorts = sorts
-		var limit = limit ?? Result.defaultPageSize
-		if let max = Result.maxPageSize, limit > max{
+		var limit = limit ?? Result.defaultPageSizeCursor
+		if let max = Result.maxPageSizeCursor, limit > max{
 			limit = max
 		}
 		try ensureUniqueSort(sorts: &sorts)
